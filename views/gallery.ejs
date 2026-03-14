@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css">
+
+  <title><%= galleryName || 'Gallery' %></title>
+</head>
+
+<body>
+
+  <header>
+    <h2 class="portfolio__title"><%= galleryName || 'Gallery' %></h2>
+  </header>
+
+  <div class="gallery-container">
+    <% if (images && images.length > 0) { %>
+      <% images.forEach(function(image, index) { %>
+        <img 
+          src="<%= image.thumb %>" 
+          alt="<%= image.name %>" 
+          loading="lazy"
+          
+          onclick="openLightbox(<%= index %>)"
+        >
+      <%  }); %>
+    <% } else { %>
+      <p>No images found.</p>
+    <% } %>
+  </div>
+
+  <div class="back-home-container">
+    <a href="/" class="button">Back to Home</a>
+  </div>
+
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+
+    <button class="lightbox-prev" onclick="prevImage()">&#10094;</button>
+
+    <div class="lightbox-content">
+      <div id="lightbox-loader" class="lightbox-loader"></div>
+      <img id="lightbox-img" />
+    </div>
+
+    <button class="lightbox-next" onclick="nextImage()">&#10095;</button>
+  </div>
+
+  <script>
+    const galleryImages = <%- JSON.stringify(images) %>;
+    let currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = index;
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+
+      img.src = galleryImages[index].url;
+      lb.style.display = 'flex';
+      document.body.classList.add('no-scroll');
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
+      document.body.classList.remove('no-scroll');
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentIndex].url;
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentIndex].url;
+    }
+
+    // Close when clicking outside image
+    document.getElementById('lightbox').addEventListener('click', function (e) {
+      if (e.target.id === 'lightbox') closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function (e) {
+      const lightbox = document.getElementById('lightbox');
+      if (lightbox.style.display !== 'flex') return;
+
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+
+</body>
+</html>

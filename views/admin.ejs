@@ -1,0 +1,157 @@
+<%- include('partials/header', { title: "Admin Dashboard" }) %>
+
+<!-- Admin content -->
+<section>
+  <div class="admin-container">
+
+    <div class="admin-header">
+      <h2>Admin Dashboard</h2>
+
+    </div>
+
+    <% if (typeof saved !== "undefined" && saved) { %>
+      <p class="admin-subtext">Changes saved successfully.</p>
+    <% } %>
+
+    <form method="POST" action="/admin/save" class="admin-form">
+
+      <div class="admin-form-group">
+        <label><strong>Hero Title</strong></label>
+        <input
+          type="text"
+          name="heroTitle"
+          value="<%= content.heroTitle %>"
+          required
+        >
+      </div>
+
+      <div class="admin-form-group">
+        <label><strong>About Text</strong></label>
+        <textarea
+          name="aboutText"
+          rows="5"
+          required
+        ><%= content.aboutText %></textarea>
+      </div>
+
+      <div class="admin-form-group">
+        <label><strong>Age</strong></label>
+        <input
+          type="text"
+          name="age"
+          value="<%= content.age %>"
+        >
+      </div>
+
+      <div class="admin-form-group">
+        <label><strong>Email</strong></label>
+        <input
+          type="text"
+          name="email"
+          value="<%= content.email %>"
+        >
+      </div>
+
+      <div class="admin-form-group">
+        <label><strong>Instagram Username</strong></label>
+        <input
+          type="text"
+          name="instagramUsername"
+          value="<%= content.instagramUsername %>"
+        >
+      </div>
+
+      <div class="admin-form-group">
+        <label><strong>Instagram URL</strong></label>
+        <input
+          type="text"
+          name="instagramURL"
+          value="<%= content.instagramURL %>"
+        >
+      </div>
+
+      <div class="admin-buttons">
+        <button class="button" type="submit">
+          Save Changes
+        </button>
+
+        <a href="/" class="button">
+          Back To Website
+        </a>
+      </div>
+
+    </form>
+
+  </div>
+</section>
+
+<hr>
+
+<!-- Messages -->
+<section class="admin-messages-section">
+
+  <h3 class="admin-messages-title">Messages</h3>
+
+  <div class="admin-messages-grid">
+
+    <% if (!messages || messages.length === 0) { %>
+      <p class="admin-subtext">No messages yet.</p>
+    <% } %>
+
+    <% messages.forEach(msg => { %>
+
+      <div class="admin-message-card">
+
+        <div class="admin-message-header">
+          <span class="admin-message-name"><%= msg.name %></span>
+          <div class="admin-email-copy">
+
+            <span class="admin-message-email"><%= msg.email %></span>
+
+            <button 
+              type="button"
+              class="copy-email-btn"
+              onclick="copyEmail(this, '<%= msg.email %>')"
+            >
+              Copy
+            </button>
+
+          </div>
+        </div>
+
+        <p class="admin-message-body"><%= msg.message %></p>
+
+        <form method="POST" action="/admin/messages/delete">
+          <input type="hidden" name="id" value="<%= msg.id %>">
+          <button class="admin-delete-btn">Delete</button>
+        </form>
+
+      </div>
+
+    <% }) %>
+
+  </div>
+
+</section>
+<script>
+
+function copyEmail(button, email) {
+
+  navigator.clipboard.writeText(email);
+
+  const originalText = button.innerText;
+
+  button.innerText = "Copied!";
+  button.style.background = "#4CAF50";
+  button.style.color = "#fff";
+
+  setTimeout(() => {
+    button.innerText = originalText;
+    button.style.background = "";
+    button.style.color = "";
+  }, 1500);
+
+}
+
+</script>
+<%- include('partials/footer') %>

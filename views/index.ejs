@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Remixicon -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>Website Portfolio</title>
+</head>
+
+<body>
+
+<!-- ================= Header ================= -->
+<header class="header" id="header">
+    <nav class="nav container">
+        <div class="nav_menu" id="nav-menu">
+            <ul class="nav__list">
+                <li><a href="#home" class="nav__link">Hello</a></li>
+                <li><a href="#aboutMe" class="nav__link">About Me</a></li>
+                <li><a href="#portfolio" class="nav__link">Portfolio</a></li>
+                <li><a href="#contact" class="nav__link">Contacting</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<!-- ================= Main ================= -->
+<main class="main">
+
+    <!-- ================= Home ================= -->
+    <section class="home" id="home">
+        <div class="home__container container grid">
+
+            <div class="home__img" style="background-image: url('/profile');"></div>
+
+            <div class="home__data">
+                <h1 class="home__name"><%= content?.heroTitle || "Photographer Portfolio" %></h1>
+                <p class="home__work">Photographer</p>
+                <dl class="home__list">
+                    <dt>AGE:</dt>
+                    <dd><%= content.age %></dd>
+                    <dt>EMAIL:</dt>
+                    <dd><%= content.email %></dd>
+                </dl>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= About ================= -->
+    <section class="hello section container" id="aboutMe">
+        <h2 class="section__title">About Me</h2>
+        <p class="hello__details text-lg">
+            <%= content?.aboutText || "" %> 
+        </p>
+    </section>
+
+    <!-- ================= Portfolio ================= -->
+    <section class="portfolio section container" id="portfolio">
+        <h2 class="section__title">Portfolio</h2>
+
+        <div class="portfolio__grid">
+            <% galleries.forEach(gallery => { %>
+                
+                <a href="/gallery/<%= gallery.id %>" class="portfolio-box">
+
+                    <img 
+                        src="/image/<%= gallery.cover %>" 
+                        class="portfolio-cover"
+                        loading="lazy"
+                    >     
+
+                    <div class="portfolio-overlay">
+                    <span><%= gallery.name %></span>
+                    </div>
+
+                </a>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- ================= Contact ================= -->
+    
+    <section class="contact section" id="contact">
+        <div class="container contact__content">
+
+            <h2 class="section__title">Contact Me</h2>
+
+            <div class="contact__container grid">
+
+                <div>
+
+                    <dl class="contact__list">
+
+                        <dt>Email:</dt>
+                        <dd>
+                            <a href="mailto:<%= content.email %>" class="contact__social-link">
+                                <%= content.email %>
+                            </a>
+                        </dd>
+
+                        <dt>Instagram:</dt>
+                        <dd>
+                            <a href="<%= content.instagramURL %>" class="contact__social-link">
+                                <%= content.instagramUsername %>
+                            </a>
+                        </dd>
+
+                    </dl>
+
+                </div>
+
+
+                <!-- Contact Form -->
+                <form action="/contact" method="POST" class="contact-form">
+
+                    <input type="text" name="name" placeholder="Your Name" required>
+
+                    <input type="email" name="email" placeholder="Your Email" required>
+
+
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+
+                    <button type="submit">Send Message</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>    
+</main>
+
+<button class="button" id="backToTop">Back To Top</button>
+
+<script src="/js/script.js"></script>
+
+</body>
+</html>
