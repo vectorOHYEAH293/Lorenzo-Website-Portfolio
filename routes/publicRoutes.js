@@ -17,7 +17,7 @@ const GALLERIES_FOLDER_ID = process.env.GALLERIES_FOLDER_ID;
 const PROFILE_FOLDER_ID = process.env.PROFILE_FOLDER_ID;
 
 const auth = new google.auth.GoogleAuth({
-  keyFile: "credentials.json",
+  keyFile: JSON.parse(process.env.GOOGLE_CREDENTIALS),
   scopes: ["https://www.googleapis.com/auth/drive.readonly"],
 });
 
