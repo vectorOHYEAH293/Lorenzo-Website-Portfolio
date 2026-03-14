@@ -254,16 +254,29 @@ input {
     font-size: var(--fs-base);
 }
 
+.home__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.home__list div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .home__list dt {
-    float: left;
     font-weight: var(--bold);
     opacity: 0.8;
 }
 
 .home__list dd {
-    padding-left: 4.00em;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    text-align: right;
+    word-break: break-word;
 }
+
 
 .home__list dd:not(:last-child) {
     margin-bottom: 0.94em;
@@ -594,7 +607,7 @@ background-color: var(--primary-color-alt)
 
 .gallery-container img {
     width: 100%;
-    height: 320px;
+    height: 400px;
     object-fit: cover; /* makes images fill the box evenly */
     transition: transform 0.3s ease;
     border-radius: 12px;
@@ -746,6 +759,12 @@ background-color: var(--primary-color-alt)
         opacity: 0.5;
     }
 
+    .home__list div {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    }
+    
     .home__list {
         margin-bottom: 1.5rem;
     }
@@ -756,7 +775,7 @@ background-color: var(--primary-color-alt)
     }
 
     .home__list dd {
-        padding-right: 4em;
+        text-align: center;
     }
     /* Portfolio Section */
     .portfolio__grid {
