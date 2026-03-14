@@ -2,6 +2,12 @@ const fs = require("fs");
 const path = require("path");
 require("dotenv").config();
 const express = require("express");
+
+if (process.env.GOOGLE_CREDENTIALS) {
+  const credPath = path.join(__dirname, "credentials.json");
+  fs.writeFileSync(credPath, process.env.GOOGLE_CREDENTIALS);
+}
+
 const compression = require("compression");
 const session = require("express-session");
 
