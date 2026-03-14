@@ -1,9 +1,12 @@
 const { google } = require("googleapis");
 
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
 const auth = new google.auth.GoogleAuth({
-  keyFile: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+  credentials: credentials,
   scopes: ["https://www.googleapis.com/auth/drive.readonly"],
 });
+
 
 const drive = google.drive({ version: "v3", auth });
 

@@ -16,10 +16,13 @@ const imageCache = new NodeCache({
 const GALLERIES_FOLDER_ID = process.env.GALLERIES_FOLDER_ID;
 const PROFILE_FOLDER_ID = process.env.PROFILE_FOLDER_ID;
 
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+
 const auth = new google.auth.GoogleAuth({
-  keyFile: JSON.parse(process.env.GOOGLE_CREDENTIALS),
+  credentials: credentials,
   scopes: ["https://www.googleapis.com/auth/drive.readonly"],
 });
+
 
 const drive = google.drive({ version: "v3", auth });
 
