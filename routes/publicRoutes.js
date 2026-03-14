@@ -75,6 +75,8 @@ Image Proxy
 router.get("/image/:id", async (req, res) => {
 
   const fileId = req.params.id;
+  const size = req.query.size || 1200;
+
 
   const cachedImage = imageCache.get(fileId);
 
@@ -87,7 +89,10 @@ router.get("/image/:id", async (req, res) => {
 
     const response = await drive.files.get(
       { fileId, alt: "media" },
-      { responseType: "arraybuffer" }
+      {
+        responseType: "arraybuffer",
+        params: { size }
+      }
     );
 
     const buffer = Buffer.from(response.data);

@@ -60,6 +60,10 @@ Static & Views
 
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(express.static("public", {
+  maxAge: "7d"
+}));
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
