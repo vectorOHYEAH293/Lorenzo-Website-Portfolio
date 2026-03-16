@@ -343,6 +343,7 @@ background-color: var(--primary-color-alt)
     font-size: var(--fs-h2);
     line-height: 1.2;   
     margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
 }
 .portfolio__grid {
     display: flex;
