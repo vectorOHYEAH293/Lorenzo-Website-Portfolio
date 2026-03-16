@@ -254,29 +254,26 @@ input {
     font-size: var(--fs-base);
 }
 
+
 .home__list {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
 }
 
 .home__list div {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
 
 .home__list dt {
+    width: 90px;
     font-weight: var(--bold);
     opacity: 0.8;
 }
 
 .home__list dd {
-    font-size: 1.1rem;
-    text-align: right;
-    word-break: break-word;
+    font-size: var(--fs-lg);
 }
-
 
 .home__list dd:not(:last-child) {
     margin-bottom: 0.94em;
@@ -359,7 +356,6 @@ background-color: var(--primary-color-alt)
     margin-bottom: 0.5rem;
 }
 .portfolio__grid {
-   
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -398,8 +394,7 @@ background-color: var(--primary-color-alt)
     position: relative;
     overflow: hidden;
     color: var(--title-color);
-    /* slightly larger padding for a roomier look */
-    padding: 4rem 6rem;
+    padding: 3rem 4rem;
     text-align: center;
     border-radius: 15px;
     font-size: 1.25rem;
@@ -411,12 +406,9 @@ background-color: var(--primary-color-alt)
     display: flex;
     align-items: center;
     justify-content: center;
-    /* increase height so boxes feel bigger */
-    height: 250px;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    /* slightly smaller base width so items don't spread too far */
-    flex: 1 1 320px; /* can grow, can shrink, base 320px */
-    max-width: 360px;
+    height: 220px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+    flex: 0 0 320px;
 }
 
 .portfolio-box:hover {
@@ -598,22 +590,19 @@ background-color: var(--primary-color-alt)
 /*================ Portfolio gallery =================*/
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* bigger images */
-    gap: 30px; /* spacing between images */
-    padding: 50px; /* keep images away from the walls */
-    justify-items: center;
-    align-content: start;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 40px;
 }
 
 .gallery-container img {
     width: 100%;
-    height: 400px;
-    object-fit: cover; /* makes images fill the box evenly */
+    height: 350px;
+    object-fit: cover;
     transition: transform 0.3s ease;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     cursor: pointer;
-    content-visibility: auto;
 }
 
 
@@ -759,12 +748,6 @@ background-color: var(--primary-color-alt)
         opacity: 0.5;
     }
 
-    .home__list div {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    }
-    
     .home__list {
         margin-bottom: 1.5rem;
     }
