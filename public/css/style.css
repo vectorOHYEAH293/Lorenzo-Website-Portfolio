@@ -254,17 +254,6 @@ input {
     font-size: var(--fs-base);
 }
 
-
-.home__list {
-    display: flex;
-    flex-direction: column;
-}
-
-.home__list div {
-    display: flex;
-    align-items: center;
-}
-
 .home__list dt {
     width: 90px;
     font-weight: var(--bold);
@@ -272,7 +261,7 @@ input {
 }
 
 .home__list dd {
-    font-size: var(--fs-lg);
+    font-size: 1.2rem;
 }
 
 .home__list dd:not(:last-child) {
@@ -352,7 +341,7 @@ background-color: var(--primary-color-alt)
     font-family: var(--mono-font);
     font-weight: var(--bold);
     font-size: var(--fs-h2);
-    line-height: 1.2;
+    line-height: 1.2;   
     margin-bottom: 0.5rem;
 }
 .portfolio__grid {
@@ -394,7 +383,7 @@ background-color: var(--primary-color-alt)
     position: relative;
     overflow: hidden;
     color: var(--title-color);
-    padding: 3rem 4rem;
+    padding: 4rem 6rem;
     text-align: center;
     border-radius: 15px;
     font-size: 1.25rem;
@@ -406,9 +395,10 @@ background-color: var(--primary-color-alt)
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 220px;
+    height: 240px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
-    flex: 0 0 320px;
+    flex: 1 1 320px;
+    max-width: 360px;
 }
 
 .portfolio-box:hover {
@@ -603,6 +593,7 @@ background-color: var(--primary-color-alt)
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     cursor: pointer;
+    content-visibility: auto;
 }
 
 
