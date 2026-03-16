@@ -536,6 +536,9 @@ background-color: var(--primary-color-alt)
 
     font-family: var(--mono-font);
     font-size: 0.9rem;
+
+    box-sizing: border-box;
+    display: block;
 }
 
 
